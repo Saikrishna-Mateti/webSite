@@ -28,6 +28,7 @@ function App() {
         <Route path="/" element={<MainLayout />} />
         <Route path="/about" element={<About />} />
       </Routes>
+      {/* <Footer/> */}
     </Router>
   );
 }

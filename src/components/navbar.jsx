@@ -47,7 +47,7 @@ function NavBar() {
             <Link to="/">
             <span
               className="logo_text"
-              style={{ color: "#a9a9b3", cursor: "pointer"}}
+              style={{ color: "#a9a9b3", cursor: "pointer", fontWeight: "bold"}}
             >
               /home/saikrishnamateti
             </span>

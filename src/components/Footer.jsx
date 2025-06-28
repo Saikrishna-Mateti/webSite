@@ -21,14 +21,12 @@ function Footer() {
         }}
         >
         {/* <p>© 2023 Sai Krishna Mateti. All rights reserved.</p> */}
-            <div className='footer-content' style={{display: 'flex', justifyContent:'center', textAlign:'center', gap:'2px'}}>
+            <div className='footer-content' style={{display: 'flex', justifyContent:'center', textAlign:'center', gap:'2px', fontFamily:'monospace', fontSize:'15px'}}>
                 <span>© 2023</span>
                 <span><Dot/></span>
-                <span><Link href="#" color="inherit">Sai Krishna Mateti</Link></span>
+                <span><Link href="https://saikrishnamateti.com/" color="inherit">Sai Krishna Mateti</Link></span>
                 <span><Dot/></span>
-                <span><Link href="#" color='inherit'>CC BY-ND 4.0</Link></span>
-
-
+                <span><Link href="https://creativecommons.org/licenses/by-nd/4.0/" color='inherit'>CC BY-ND 4.0</Link></span>
             </div>
         </footer>
     );
