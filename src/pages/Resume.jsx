@@ -3,6 +3,8 @@ import { Worker, Viewer } from "@react-pdf-viewer/core";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import { Container, Box, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import resumePdf from "/Sai_Krishna_Resume.pdf";
+
 function Resume() {
   const navigate = useNavigate();
   return (
@@ -56,7 +58,7 @@ function Resume() {
         }}
       >
         <a
-          href="/Sai_Krishna_Resume.pdf"
+          href={resumePdf}
           download
           style={{
             marginBottom: "20px",
@@ -75,7 +77,7 @@ function Resume() {
           Download PDF
         </a>
         <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
-          <Viewer fileUrl="/Sai_Krishna_Resume.pdf" />
+          <Viewer fileUrl={resumePdf} />
         </Worker>
       </div>
     </Container>
