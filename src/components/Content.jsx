@@ -17,26 +17,26 @@ function Content() {
       sx={{
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        testAlign: "center",
+        alignItems: "flex-start",
         height: "100vh",
-        margin: "0 auto",
         color: "#a9a9b3",
+        paddingTop: { xs: "20px", md: "20px" },
+        paddingBottom: { xs: "80px", md: "70px" },
+        // border: "1px solid red",
+        marginLeft: '40px',
       }}
     >
-      <h1>
-        {" "}
-        Hi, I&apos;m Sai Krishna Mateti.
-        <br /> Software Engineer
+      <h1 className="content-title">
+        SAI KRISHNA MATETI.
       </h1>
 
-      <p style={{ textAlign: "center" }}>
+      <p className="subtitle">Software Engineer</p>
+      <p>
         Relentless self-taught developer, passionate about crafting solutions,
         <br />
         and driven to grow in tech.
       </p>
-      <Stack
+      {/* <Stack
         direction="row"
         spacing={2}
         sx={{
@@ -66,7 +66,7 @@ function Content() {
         >
           <Mail color="#a9a9b3" />
         </IconButton>
-      </Stack>
+      </Stack> */}
       <div
         style={{
           display: "flex",
@@ -75,7 +75,7 @@ function Content() {
           marginTop: "20px",
         }}
       >
-        <Button
+        {/* <Button
           sx={{
             backgroundColor: "#1b1c1d",
             color: "#a9a9b3",
@@ -91,8 +91,8 @@ function Content() {
           size="large"
         >
           <a href="#contact">Hire Me!</a>
-        </Button>
-        <div
+        </Button> */}
+        {/* <div
           style={{
             display: "flex",
             alignItems: "center",
@@ -115,9 +115,9 @@ function Content() {
               Available for collaborations
             </span>
           </div>
-        </div>
+        </div> */}
       </div>
-      <StackLoop />
+      {/* <StackLoop /> */}
     </Container>
   );
 }

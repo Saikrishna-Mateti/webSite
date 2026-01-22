@@ -1,70 +1,142 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   AppBar,
   Toolbar,
   Paper,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
   Box,
-  Container,
-  Typography,
-  keyframes,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
-
-import { Link} from "react-router-dom";
+import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const navItems = [
-  { name: "About", path: "/about"},
+  { name: "About", path: "/about" },
   { name: "Projects", path: "/projects" },
   { name: "Resume", path: "/resume" },
 ];
 
-
 function NavBar() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
+  const drawer = (
+    <Box
+      sx={{
+        width: 250,
+        backgroundColor: "#171717",
+        height: "100%",
+        paddingTop: "20px",
+      }}
+      onClick={handleDrawerToggle}
+    >
+      <List>
+        {navItems.map((item) => (
+          <ListItem key={item.name} sx={{ padding: "12px 24px" }}>
+            <Link
+              to={item.path}
+              style={{
+                textDecoration: "none",
+                color: "#a9a9b3",
+                fontSize: "1.1rem",
+                fontFamily: "monospace",
+                width: "100%",
+              }}
+            >
+              {item.name}
+            </Link>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  );
+
   return (
-      <AppBar
-        component={'nav'}
-        position="fixed"
-        sx={{ backgroundColor: "#1b1c1d", boxShadow: "none"}}
+    <AppBar
+      component={"nav"}
+      position="fixed"
+      sx={{
+        top: "auto",
+        bottom: 0,
+        backgroundColor: "#171717",
+        boxShadow: "none",
+        borderTop: "1px solid #222",
+      }}
+    >
+      <Toolbar
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          width: { xs: "95%", md: "90%" },
+          margin: "0 auto",
+          padding: { xs: "8px 0", md: "12px 0" },
+        }}
       >
-        <Toolbar
-          sx={{
+        <div
+          className="logo"
+          style={{
+            fontFamily: "monospace, monospace",
+            fontSize: isMobile ? "0.9rem" : "1.127rem",
+            fontWeight: "bold",
+            color: "#fff",
             display: "flex",
-            justifyContent: "space-between",
             alignItems: "center",
-            width: "840px",
-            margin: "0 auto",
           }}
         >
-          <div
-            className="logo"
-            style={{ fontFamily: 'monospace, monospace', fontSize: "1.127rem", fontWeight: "bold", color: "#fff" }}
+          <span
+            className="logo_mark"
+            style={{ marginRight: "8px", color: "#a9a9b3" }}
           >
-            <span
-              className="logo_mark"
-              style={{ marginRight: "8px", color: "#a9a9b3" }}
-            >
-              &gt;_
-            </span>
+            &gt;_
+          </span>
             <Link to="/">
             <span
               className="logo_text"
-              style={{ color: "#a9a9b3", cursor: "pointer", fontWeight: "bold"}}
+              style={{
+                color: "#a9a9b3",
+                cursor: "pointer",
+                fontWeight: "bold",
+              }}
             >
-              /home/saikrishnamateti
+              {isMobile ? "~/saikrishna" : "/home/saikrishnamateti"}
             </span>
-            </Link>
+          </Link>
+          {!isMobile && (
             <span
               className="logo_blink"
               style={{
                 display: "inline-block",
                 marginLeft: "8px",
                 width: "10px",
-                height: '1rem',
+                height: "1rem",
                 backgroundColor: "#00ee00",
-                borderRadius: "1px", 
+                borderRadius: "1px",
               }}
-              >
-            </span>
-          </div>
+            ></span>
+          )}
+        </div>
+
+        {isMobile ? (
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="end"
+            onClick={handleDrawerToggle}
+            sx={{ color: "#a9a9b3" }}
+          >
+            <Menu size={24} />
+          </IconButton>
+        ) : (
           <div
             className="nav-tools"
             style={{ display: "flex", alignItems: "center" }}
@@ -79,19 +151,43 @@ function NavBar() {
                   margin: "0 8px",
                   padding: "4px 8px",
                   borderRadius: "4px",
-                  backgroundColor: "#1b1c1d",
+                  backgroundColor: "transparent",
+                  textDecoration: "none",
                   color: "#a9a9b3",
                   "&:hover": {
-                    textDecoration: "underline"
-                  }
+                    textDecoration: "underline",
+                  },
                 }}
               >
-                 {item.name}
+                {item.name}
               </Paper>
             ))}
           </div>
-        </Toolbar>
-      </AppBar>
+        )}
+      </Toolbar>
+
+      <Drawer
+        anchor="right"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        sx={{
+          display: { xs: "block", md: "none" },
+          "& .MuiDrawer-paper": {
+            boxSizing: "border-box",
+            backgroundColor: "#171717",
+            borderLeft: "1px solid #222",
+          },
+        }}
+      >
+        <Box sx={{ display: "flex", justifyContent: "flex-end", p: 2 }}>
+          <IconButton onClick={handleDrawerToggle} sx={{ color: "#a9a9b3" }}>
+            <X size={24} />
+          </IconButton>
+        </Box>
+        {drawer}
+      </Drawer>
+    </AppBar>
   );
 }
+
 export default NavBar;

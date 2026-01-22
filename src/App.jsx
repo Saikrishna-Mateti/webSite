@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import NavBar from './components/navbar';
 import Content from './components/Content';
 import Footer from './components/Footer';
@@ -7,28 +7,39 @@ import './App.css';
 import './styles/navbar.css';
 import './styles/Content.css';
 import React from 'react';
-
+import Resume from './pages/Resume';
+import Projects from './pages/Projects';
 
 function MainLayout(){
   return(
     <>
-    <NavBar/>
-    <Content/>
-    <Footer/>
+      <Content/>
+      {/* <Footer/> */}
     </>
   )
 }
 
+function AppLayout() {
+  const location = useLocation();
+  const hideNavBar = location.pathname === "/resume";
+
+  return (
+    <>
+      {!hideNavBar && <NavBar />}
+      <Routes>
+        <Route path="/" element={<MainLayout />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/resume" element={<Resume />} />
+        <Route path="/projects" element={<Projects />} />
+      </Routes>
+    </>
+  );
+}
 
 function App() {
   return (
     <Router>
-      <NavBar/>
-      <Routes>
-        <Route path="/" element={<MainLayout />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
-      {/* <Footer/> */}
+      <AppLayout />
     </Router>
   );
 }
